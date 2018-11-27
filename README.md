@@ -4,16 +4,16 @@ Custom [Micro-manager](https://micro-manager.org/ "Micro-manager website") devic
 This repository contains the code (device adapters) developped to control specific hardware with [Micro-manager](https://micro-manager.org/ "Micro-manager website"). 
 The following were entirely developped by Joran Deschamps:
 
-* LaserQuantumLaser: this adapters allows controlling gem/ventus/opus/axiom series from LaserQuantum. For lasers that can be 
-current controlled (factory enabled), the adapter permit switching control modes. This device adapter has been added to the Micro-Manager
+* LaserQuantumLaser: this adapter allows controlling gem/ventus/opus/axiom series from LaserQuantum. For lasers that can be 
+current controlled (factory enabled), the adapter permits switching control modes. This device adapter has been added to the Micro-Manager
 source-code.
 * MicroMojo: device adapter used for the [Micro-Mojo project](https://github.com/jdeschamps/MicroMojo "Micro-Mojo on GitHub").
 This project uses a cheap FPGA to implement electronic control of several elements on a microscope (flexible laser triggering,
 servos, PWM, TTL).
-* SmarActHCU-3D: computer control of SmarAct HCU, SCU and CU controllers. This device adapter has beem added to the Micro-Manager source code.
-* Toptica-iBeamSmart: several device adapters to control different aspects of an iBeamSmart laser, depending on available options.
-* Toptica-iBeamSmartCW: global device adapter for the iBeamSmart that makes use of an hidden control mode. This device adapter simplifies
-the 
+* SmarActHCU-3D: computer control of SmarAct HCU, SCU and CU controllers. This device adapter has been added to the Micro-Manager source code.
+* Toptica-iBeamSmart: several device adapters to control different aspects of an iBeamSmart laser, depending on available options (obsolete: see iBeamSmartCW).
+* Toptica-iBeamSmartCW: global device adapter for the iBeamSmart that makes use of a hidden control mode. This device adapter simplifies
+the laser interface (only one channel) and detects automatically the possibility to trigger externally the laser.
 
 Are also included device adapters whose scope was extended:
 
