@@ -2,7 +2,7 @@
 Custom [Micro-manager](https://micro-manager.org/ "Micro-manager website") device adapters
 
 This repository contains the code (device adapters) developped to control specific hardware with [Micro-manager](https://micro-manager.org/ "Micro-manager website"). 
-The following were entirely developped by Joran Deschamps:
+The following were developped new:
 
 * LaserQuantumLaser: this adapter allows controlling gem/ventus/opus/axiom series from LaserQuantum. For lasers that can be 
 current controlled (factory enabled), the adapter permits switching control modes. This device adapter has been added to the Micro-Manager
@@ -11,6 +11,7 @@ source-code.
 This project uses a cheap FPGA to implement electronic control of several elements on a microscope (flexible laser triggering,
 servos, PWM, TTL).
 * SmarActHCU-3D: computer control of SmarAct HCU, SCU and CU controllers. This device adapter has been added to the Micro-Manager source code.
+* ThorlabsElliptecSlider: Control of [ELL9](https://www.thorlabs.com/thorproduct.cfm?partnumber=ELL9) piezo 4-position slider from Thorlabs.
 * Toptica-iBeamSmart: several device adapters to control different aspects of an iBeamSmart laser, depending on available options (obsolete: see iBeamSmartCW).
 * Toptica-iBeamSmartCW: global device adapter for the iBeamSmart that makes use of a hidden control mode. This device adapter simplifies
 the laser interface (only one channel) and detects automatically the possibility to trigger externally the laser.
