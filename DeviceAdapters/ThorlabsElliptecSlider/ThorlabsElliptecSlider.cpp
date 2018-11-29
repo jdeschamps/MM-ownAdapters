@@ -98,7 +98,6 @@ ThorlabsElliptecSlider::ThorlabsElliptecSlider():
 	pAct = new CPropertyAction (this, &ThorlabsElliptecSlider::OnChannel);
 	CreateProperty("Channel", "0", MM::String, false, pAct, true);
 	SetAllowedValues("Channel", channels_vec);
-
 }
 
 ThorlabsElliptecSlider::~ThorlabsElliptecSlider()
@@ -166,10 +165,14 @@ bool ThorlabsElliptecSlider::Busy(){
 	ret = GetSerialAnswer(port_.c_str(), "\r", answer);
 	if (ret != DEVICE_OK)
 		return true;
+	
+	// remove "\n" if start character
+	std::string message = removeLineFeed(answer);
 
-	int code = getErrorCode(answer.substr(4,answer.length()-4));
+	// errors are sent with the "0GS" command, so we can use the same function (channel = 0)
+	int code = getErrorCode(message);
 
-	if(code == 0){
+	if(code == 0){ // code "0" corresponds to no-error, "9" to busy
 		return false;
 	} 
 
@@ -185,7 +188,7 @@ int ThorlabsElliptecSlider::setState(int state){
 	command << channel_ << "ma";
 	
 	std::string pos;
-	switch(state){
+	switch(state){ // positions ex
 	case 0:
 		pos = g_pos0;
 		break;
@@ -207,14 +210,18 @@ int ThorlabsElliptecSlider::setState(int state){
 	if (ret != DEVICE_OK) 
 		return ret;
 
+	// get confirmation of the new position
 	std::string answer;
 	ret = GetSerialAnswer(port_.c_str(), "\r", answer);
 	if (ret != DEVICE_OK)
 		return ret;
 
+	// remove "\n" if start character
+	std::string message = removeLineFeed(answer);
+
 	// check for error
-	if(isError(answer)){
-		return getErrorCode(answer.substr(4,answer.length()-4));
+	if(isError(message)){
+		return getErrorCode(message);
 	}
 
 	return DEVICE_OK;
@@ -236,14 +243,23 @@ int ThorlabsElliptecSlider::getID(std::string* id){
 	if (ret != DEVICE_OK)
 		return ret;
 
-	if(answer.substr(1,2).compare("IN") != 0)
+	// remove "\n" if start character
+	std::string message = removeLineFeed(answer);
+
+	// check if returned an error
+	if(isError(message))
+		return getErrorCode(message);
+
+	// check if it is the expected answer
+	if(message.substr(1,2).compare("IN"))
 		return ERR_UNEXPECTED_ANSWER;
 
-	if(answer.substr(3,2).compare("09") != 0)
+	// check if ELL9
+	if(message.substr(3,2).compare("09"))
 		return ERR_WRONG_DEVICE;
-
-	*id = answer.substr(3,15);
-
+		
+	*id = message.substr(3,15); // module + serial + year + firmware
+	
 	return DEVICE_OK;
 }
 
@@ -260,27 +276,31 @@ int ThorlabsElliptecSlider::getState(int* state){
 	ret = GetSerialAnswer(port_.c_str(), "\r", answer);
 	if (ret != DEVICE_OK)
 		return ret;
+	
+	// remove "\n" if start character
+	std::string message = removeLineFeed(answer);
 
 	// check for error
-	if(isError(answer)){
-		return getErrorCode(answer.substr(4,answer.length()-4));
+	if(isError(message)){
+		return getErrorCode(message);
 	}
 
-	if(answer.substr(2,2).compare("PO") != 0)
+	// check if it is the expected answer
+	if(message.substr(1,2).compare("PO") != 0)
 		return ERR_UNEXPECTED_ANSWER;
 
-	if(answer.substr(4,answer.length()-4).compare(g_pos0) == 0){
+	std::string position = removeCommandFlag(message);
+	if(position.compare(g_pos0) == 0){
 		*state = 0;
-	} else if(answer.substr(4,answer.length()-4).compare(g_pos1) == 0){
+	} else if(position.compare(g_pos1) == 0){
 		*state = 1;
-	} else if(answer.substr(4,answer.length()-4).compare(g_pos2) == 0){
+	} else if(position.compare(g_pos2) == 0){
 		*state = 2;
-	} else if(answer.substr(4,answer.length()-4).compare(g_pos3) == 0){
+	} else if(position.compare(g_pos3) == 0){
 		*state = 3;
 	} else {
 		return ERR_UNKNOWN_STATE;
 	}
-
 
 	return DEVICE_OK;
 }
@@ -289,19 +309,37 @@ int ThorlabsElliptecSlider::getState(int* state){
 //---------------------------------------------------------------------------
 // Convenience function
 //---------------------------------------------------------------------------
+std::string ThorlabsElliptecSlider::removeLineFeed(std::string answer){
+	std::string message;
+	if(answer.substr(0,1).compare("\n") == 0){
+		message = answer.substr(1,answer.length()-1);
+	} else {
+		message = answer;
+	}
+
+	return message;
+}
+
+std::string ThorlabsElliptecSlider::removeCommandFlag(std::string message){
+	std::string value = message.substr(3,message.length()-3);
+	return value;
+}
+
 bool ThorlabsElliptecSlider::isError(std::string message){
-	if(message.substr(2,2).compare("GS") == 0){
+	if(message.substr(1,2).compare("GS") == 0){
 		return true;
 	}
 	return false;
 }
 
 int ThorlabsElliptecSlider::getErrorCode(std::string message){
-	if(message.compare("00") == 0){
+	std::string code = removeCommandFlag(message);
+
+	if(code.compare("00") == 0){
 		return DEVICE_OK;
-	} else if(message.compare("01") == 0){
+	} else if(code.compare("01") == 0){
 		return ERR_COMMUNICATION_TIME_OUT;
-	} else if(message.compare("02") == 0){
+	} else if(code.compare("02") == 0){
 		return ERR_MECHANICAL_TIME_OUT;
 	} else if(message.compare("03") == 0){
 		return ERR_COMMAND_ERROR_OR_NOT_SUPPORTED;
@@ -390,4 +428,3 @@ int ThorlabsElliptecSlider::OnChannel(MM::PropertyBase* pProp , MM::ActionType e
 
 	return DEVICE_OK;
 }
-

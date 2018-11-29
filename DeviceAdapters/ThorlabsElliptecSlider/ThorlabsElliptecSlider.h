@@ -55,11 +55,15 @@ public:
 	bool Busy();
 	unsigned long GetNumberOfPositions()const {return numPos_;}
 
-	bool isError(std::string);
-	int getErrorCode(std::string message);
 	int getID(std::string* id);
 	int setState(int state);
 	int getState(int* state);
+
+	// convenience functions
+	bool isError(std::string);
+	int getErrorCode(std::string message);
+	std::string removeLineFeed(std::string answer);
+	std::string removeCommandFlag(std::string message);
 
 	// action interface
 	// ----------------
