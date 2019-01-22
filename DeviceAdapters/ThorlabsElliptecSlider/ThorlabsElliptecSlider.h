@@ -40,11 +40,50 @@
 #define ERR_OVER_CURRENT_ERROR 213
 #define ERR_UNKNOWN_ERROR 214
 
-class ThorlabsElliptecSlider : public CStateDeviceBase<ThorlabsElliptecSlider>
+class ELL9 : public CStateDeviceBase<ELL9>
 {
 public:
-	ThorlabsElliptecSlider();
-	~ThorlabsElliptecSlider();
+	ELL9();
+	~ELL9();
+
+	// MMDevice API
+	// ------------
+	int Initialize();
+	int Shutdown();
+
+	void GetName(char* pszName) const;
+	bool Busy();
+	unsigned long GetNumberOfPositions()const {return numPos_;}
+
+	int getID(std::string* id);
+	int setState(int state);
+	int getState(int* state);
+
+	// convenience functions
+	bool isError(std::string);
+	int getErrorCode(std::string message);
+	std::string removeLineFeed(std::string answer);
+	std::string removeCommandFlag(std::string message);
+
+	// action interface
+	// ----------------
+	int OnState(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int OnChannel(MM::PropertyBase* pProp, MM::ActionType eAct);
+
+private:
+	std::string port_;
+	long numPos_;
+	std::string channel_;
+	bool initialized_;
+	bool busy_;
+};
+
+class ELL6 : public CStateDeviceBase<ELL6>
+{
+public:
+	ELL6();
+	~ELL6();
 
 	// MMDevice API
 	// ------------
