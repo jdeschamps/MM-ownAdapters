@@ -573,7 +573,7 @@ bool ELL6::Busy(){
 int ELL6::setState(int state){
 	
 	std::ostringstream command;
-	command << channel_ << "ma";
+	command << channel_;
 	
 	std::string pos;
 	switch(state){ // positions ex
