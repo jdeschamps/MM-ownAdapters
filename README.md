@@ -20,6 +20,10 @@ Are also included device adapters whose scope was extended:
 (using the Aladdin API). Most of the functions have been implemented.
 * **NI100X**: The original code from Nenad Amodaj (100X Imaging Inc, 2010) was extended to add Analog read (input).
 
+In addition, there is a modified PI device adapter (**PI_FocusLock**) to switch the sensors from internal to external. This is used within a focus-locking system to set specific parameter values in our E709 PI controller. **Before use, please contact PI to know the parameters required for your stage and compare them to the values set in PI_FocusLock.cpp.**  
+
+
+
 For any further information, contact me: 'joran'.'deschamps'(at) 'embl'.'de' or through the [EMBL contact form](https://intranet.embl.de/research/cbb/ries/members/index.php?s_personId=CP-60017864).
 
 Joran Deschamps, EMBL, 2018
