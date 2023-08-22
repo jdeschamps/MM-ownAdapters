@@ -22,7 +22,7 @@ Note: these instructions can potentially quickly be outdated.
 - Place the device adapter folder in the devices folder of mmCoreAndDevices
 - Open the .vcxproj of the device adapter
 - In the Solution explorer, add an existing project: MMDevice-SharedRuntime.vcxproj (in MMDevice folder in mmCoreAndDevices)
-- Right click on one of the projects and select build order. Make the device adapter you are interested in dependent on MMDevice-SharedRuntime
+- Right click on one of the projects and select Build Dependencies > Project Dependencies. Make the device adapter you are interested in dependent on MMDevice-SharedRuntime
 - In the top menu, set the build to Release and x64
 - Build the device adapter
 - Place the compiled mmgr_*.dll in your Micro-Manager installation 
