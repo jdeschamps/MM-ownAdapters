@@ -3,7 +3,7 @@ Custom [Micro-manager](https://micro-manager.org/ "Micro-manager website") devic
 
 This repository contains the code (device adapters) developped to control specific hardware with [Micro-manager](https://micro-manager.org/ "Micro-manager website"). 
 
-The following device adapters are not included in Micro-Manager (as opposed to the other):
+The following device adapters are not included in Micro-Manager (as opposed to the others):
 
 * **Aladdin**: The original device adapter from Kurt Thorn (UCSF, 2011) was extended to include the possibility to program the pumps
 (using the Aladdin API). Most of the functions have been implemented.
