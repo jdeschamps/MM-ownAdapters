@@ -20,8 +20,8 @@ Note: these instructions can potentially quickly be outdated.
 - Clone https://github.com/micro-manager/mmCoreAndDevices
 - Install Microsoft Visual C++ 2018 (v142)
 - Place the device adapter folder in the devices folder of mmCoreAndDevices
-- Open the .vxcproj of the device adapter
-- In the Solution explorer, add an existing project: MMDevice-SharedRuntime (in MMDevice folder in mmCoreAndDevices)
+- Open the .vcxproj of the device adapter
+- In the Solution explorer, add an existing project: MMDevice-SharedRuntime.vcxproj (in MMDevice folder in mmCoreAndDevices)
 - Right click on one of the projects and select build order. Make the device adapter you are interested in dependent on MMDevice-SharedRuntime
 - In the top menu, set the build to Release and x64
 - Build the device adapter
