@@ -17,12 +17,12 @@ Micro-Manager device adapters need to be build against particular versions of th
 
 Note: these instructions can potentially quickly be outdated.
 
-- Clone https://github.com/micro-manager/mmCoreAndDevices
+- Clone https://github.com/micro-manager/mmCoreAndDevices (or pull the latest commits)
 - Install Microsoft Visual C++ 2018 (v142)
 - Place the device adapter folder in the devices folder of mmCoreAndDevices
 - Open the .vcxproj of the device adapter
-- Right click on it and go to Properties. Check that the Platform Toolset is set to "Visual Studio 2019 (v142)" (it might change by clicking on it)
-- In the Solution explorer, add an existing project: MMDevice-SharedRuntime.vcxproj (in MMDevice folder in mmCoreAndDevices)
+- Right click on the device adapter project and go to Properties. Check that the Platform Toolset is set to "Visual Studio 2019 (v142)" (it might change by clicking on it)
+- In the Solution explorer, add an existing project by clicking on the Solution and selecting Add > Existing Project: MMDevice-SharedRuntime.vcxproj (in MMDevice folder in mmCoreAndDevices)
 - Right click on one of the projects and select Build Dependencies > Project Dependencies. Make the device adapter you are interested in dependent on MMDevice-SharedRuntime
 - In the top menu, set the build to Release and x64
 - Build the device adapter
