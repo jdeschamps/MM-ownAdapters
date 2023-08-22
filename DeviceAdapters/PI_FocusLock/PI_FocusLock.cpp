@@ -11,17 +11,15 @@
 //
 
 #ifdef WIN32
-   #include <windows.h>
-   #define snprintf _snprintf 
+#include <windows.h>
 #endif
+#include "FixSnprintf.h"
 
 #include "PI_FocusLock.h"
 #include <string>
 #include <math.h>
-#include "../../MMDevice/ModuleInterface.h"
+#include "ModuleInterface.h"
 #include <sstream>
-#include <iostream>
-#include <fstream>
 
 const char* g_PI_ZStageDeviceName = "PIZStage";
 const char* g_PI_ZStageAxisName = "Axis";
