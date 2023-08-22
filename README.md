@@ -24,6 +24,6 @@ In addition, there is a modified PI device adapter (**PI_FocusLock**) to switch 
 
 
 
-For any further information, contact me: 'joran'.'deschamps'(at) 'embl'.'de' or through the [EMBL contact form](https://intranet.embl.de/research/cbb/ries/members/index.php?s_personId=CP-60017864).
+For any further information, [open an issue in this repository](https://github.com/jdeschamps/MM-ownAdapters/issues).
 
 Joran Deschamps, EMBL, 2018
