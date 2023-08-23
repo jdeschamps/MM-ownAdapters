@@ -11,6 +11,8 @@ The following device adapters are not included in Micro-Manager (as opposed to t
 
 In addition, there is a modified PI device adapter (**PI_FocusLock**) to switch the sensors from internal to external. This is used within a focus-locking system to set specific parameter values in our E709 PI controller. **Before use, please contact PI to know the parameters required for your stage and compare them to the values set in PI_FocusLock.cpp.**  
 
+A compiled PI focus lock can be found here: https://github.com/jdeschamps/MM-ownAdapters/releases
+
 ## How to compile the adapters
 
 Micro-Manager device adapters need to be build against particular versions of the MMDevice API. That means that as time goes by, the device API changes and the device adapters need to be recompiled.
