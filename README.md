@@ -13,11 +13,21 @@ In addition, there is a modified PI device adapter (**PI_FocusLock**) to switch 
 
 ## How to compile the adapters
 
-Micro-Manager device adapters need to be build against particular versions of the MMDevice API.
+Micro-Manager device adapters need to be build against particular versions of the MMDevice API. That means that as time goes by, the device API changes and the device adapters need to be recompiled.
 
-Note: these instructions can potentially quickly be outdated.
+### Where is the device interface version defined?
 
-- Clone https://github.com/micro-manager/mmCoreAndDevices (or pull the latest commits)
+The device interface is defined in the [mmCoreAndDevices](https://github.com/micro-manager/mmCoreAndDevices) repository, more specifically in [MMDevice.h](https://github.com/micro-manager/mmCoreAndDevices/blob/52af1c314f761116674c4600eedf6d1ece21a152/MMDevice/MMDevice.h#L30). Everytime this number changes, the next nightly build of Micro-Manager will contain device adapters compiled against the new version of the device adapter.
+
+When it comes to custom device adapter, that is to say device adapters not integrated into Micro-Manager directly, this means that the device adapters must be recompiled for the newest device interface in order to be used with recent nightly builds.
+
+Fortunately, the device interface does not change too often.
+
+### How to compile the adapters for the newest device interface
+
+Note: these instructions can potentially become outdated.
+
+- Clone https://github.com/micro-manager/mmCoreAndDevices (or pull the latest version)
 - Install Microsoft Visual C++ 2018 (v142)
 - Place the device adapter folder in the devices folder of mmCoreAndDevices
 - Open the .vcxproj of the device adapter
@@ -29,5 +39,3 @@ Note: these instructions can potentially quickly be outdated.
 - Place the compiled mmgr_*.dll in your Micro-Manager installation 
 
 For any further information, [open an issue in this repository](https://github.com/jdeschamps/MM-ownAdapters/issues).
-
-Joran Deschamps, EMBL, 2018
