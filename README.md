@@ -8,10 +8,15 @@ The following device adapters are not included in Micro-Manager (as opposed to t
 * **Aladdin**: The original device adapter from Kurt Thorn (UCSF, 2011) was extended to include the possibility to program the pumps
 (using the Aladdin API). Most of the functions have been implemented.
 * **NI100X**: The original code from Nenad Amodaj (100X Imaging Inc, 2010) was extended to add Analog read (input).
+* **PI focus lock**: see next section
 
-In addition, there is a modified PI device adapter (**PI_FocusLock**) to switch the sensors from internal to external. This is used within a focus-locking system to set specific parameter values in our E709 PI controller. **Before use, please contact PI to know the parameters required for your stage and compare them to the values set in PI_FocusLock.cpp.**  
+## PI focus lock
 
-A compiled PI focus lock can be found here: https://github.com/jdeschamps/MM-ownAdapters/releases
+In addition, there is a modified PI device adapter (**PI_FocusLock**) to switch the sensors from internal to external. This is used within a focus-locking system to set specific parameter values in our E709 PI controller. 
+
+⚠️ **Before use, please contact PI to know the parameters required for your stage and compare them to the values set in PI_FocusLock.cpp. The specific parameters changed are outlined here: https://github.com/jdeschamps/MM-ownAdapters/blob/main/DeviceAdapters/PI_FocusLock/README.md.** ⚠️
+
+A compiled PI adapter can be found here: https://github.com/jdeschamps/MM-ownAdapters/releases
 
 ## How to compile the adapters
 
