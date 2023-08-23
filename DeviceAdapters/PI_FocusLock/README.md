@@ -7,6 +7,7 @@ Our z stage is a P-726 (PI).
 Here are two snippet of code showing how the device adapter switches between internal and external sensors using **hard coded** values.
 
 ## Switch to external sensors
+
 ``` cpp 
 string answer;
 
