@@ -45,4 +45,6 @@ Note: these instructions can potentially become outdated.
 - Build the device adapter
 - Place the compiled mmgr_*.dll in your Micro-Manager installation 
 
+## Contact
+
 For any further information, [open an issue in this repository](https://github.com/jdeschamps/MM-ownAdapters/issues).
