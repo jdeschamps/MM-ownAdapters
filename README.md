@@ -35,7 +35,7 @@ Fortunately, the device interface does not change too often.
 Note: these instructions can potentially become outdated.
 
 - Clone https://github.com/micro-manager/mmCoreAndDevices (or pull the latest version)
-- Install Microsoft Visual C++ 2018 (v142)
+- Install Microsoft Visual C++ 2019 (v142)
 - Place the device adapter folder in the devices folder of mmCoreAndDevices
 - Open the .vcxproj of the device adapter
 - Right click on the device adapter project and go to Properties. Check that the Platform Toolset is set to "Visual Studio 2019 (v142)" (it might change by clicking on it)
