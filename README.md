@@ -22,6 +22,10 @@ A compiled PI adapter can be found here: https://github.com/jdeschamps/MM-ownAda
 
 Micro-Manager device adapters need to be build against particular versions of the MMDevice API. That means that as time goes by, the device API changes and the device adapters need to be recompiled.
 
+Here are the [official instructions](https://micro-manager.org/Building_MM_on_Windows) on how to build MM on Windows (including device adapters).
+
+The next sections are personal notes.
+
 ### Where is the device interface version defined?
 
 The device interface is defined in the [mmCoreAndDevices](https://github.com/micro-manager/mmCoreAndDevices) repository, more specifically in [MMDevice.h](https://github.com/micro-manager/mmCoreAndDevices/blob/52af1c314f761116674c4600eedf6d1ece21a152/MMDevice/MMDevice.h#L30). Everytime this number changes, the next nightly build of Micro-Manager will contain device adapters compiled against the new version of the device adapter.
